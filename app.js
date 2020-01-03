@@ -1,9 +1,7 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
-const indexRouter = require('./src/routes/index');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import indexRouter from './src/routes/index';
 
 const app = express();
 

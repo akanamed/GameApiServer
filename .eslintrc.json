@@ -25,6 +25,10 @@
         ],
         "no-unused-vars": 0,
         "no-console": 0,
-        "comma-dangle": ["error", "never"]
+        "comma-dangle": ["error", "never"],
+        "import/order": 0,
+        "import/first": 0,
+        "import/newline-after-import": 0,
+        "import/prefer-default-export": 0
     }
 }

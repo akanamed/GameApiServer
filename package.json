@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node src/bin/www",
-    "build": "babel src -w -d dist --presets @babel/preset-env"
+    "start": "nodemon src/bin/www --exec babel-node",
+    "build": "babel src -w -d dist"
   },
   "dependencies": {
     "@babel/polyfill": "^7.7.0",

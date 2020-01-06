@@ -1,10 +1,8 @@
-const express = require('express');
+import express from 'express';
+import authRouter from './auth.route';
 
-const router = express.Router();
+const routeHandler = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-    res.send({ title: 'Express' });
-});
+routeHandler.use('/auth', authRouter);
 
-export default router;
+export default routeHandler;

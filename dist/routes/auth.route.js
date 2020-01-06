@@ -7,12 +7,12 @@ exports.default = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
-var _auth = _interopRequireDefault(require("./auth.route"));
+var _auth = _interopRequireDefault(require("../controller/auth.controller"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const routeHandler = _express.default.Router();
+const authRouter = _express.default.Router();
 
-routeHandler.use('/auth', _auth.default);
-var _default = routeHandler;
+authRouter.route('/create').post(_auth.default.createUser);
+var _default = authRouter;
 exports.default = _default;

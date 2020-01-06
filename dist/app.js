@@ -6,7 +6,7 @@ var _cookieParser = _interopRequireDefault(require("cookie-parser"));
 
 var _morgan = _interopRequireDefault(require("morgan"));
 
-var _index = _interopRequireDefault(require("./routes/index"));
+var _routes = _interopRequireDefault(require("./routes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,7 +17,7 @@ app.use(_express.default.urlencoded({
   extended: false
 }));
 app.use((0, _cookieParser.default)());
-app.use('/', _index.default); // error handler
+app.use('/', _routes.default); // error handler
 
 app.use((req, res, next) => {
   const err = new Error('Sorry cant find that!');

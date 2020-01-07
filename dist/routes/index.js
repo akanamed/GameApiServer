@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
 var _auth = _interopRequireDefault(require("./auth.route"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-const routeHandler = _express.default.Router();
+var routeHandler = _express["default"].Router();
 
-routeHandler.use('/auth', _auth.default);
+routeHandler.use('/auth', _auth["default"]);
 var _default = routeHandler;
-exports.default = _default;
+exports["default"] = _default;

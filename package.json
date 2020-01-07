@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "start": "nodemon src/bin/www --exec babel-node",
-    "build": "babel src -w -d dist"
+    "build": "babel src -w -d dist --presets @babel/preset-env"
   },
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
+    "connect-mongodb-session": "^2.2.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.8.4",
     "morgan": "~1.9.1"
   },
   "devDependencies": {

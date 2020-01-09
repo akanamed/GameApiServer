@@ -2,12 +2,12 @@ import session from 'express-session';
 import conMongoDBStore from 'connect-mongodb-session';
 
 const MongoDBStore = conMongoDBStore(session);
-
+const uriString = `mongodb://${process.env.MONGODB_SESSION_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_NAME}?connectTimeoutMS=5000`;
 const mongoStore = new MongoDBStore(
     {
-        uri: 'mongodb://localhost:27017/testdb?connectTimeoutMS=5000',
-        databaseName: 'testdb',
-        collection: 'sessions'
+        uri: uriString,
+        databaseName: process.env.MONGODB_NAME,
+        collection: process.env.MONGODB_COLLECTION
     },
     (error) => {
         if (error) {

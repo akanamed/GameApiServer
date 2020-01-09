@@ -1,16 +1,16 @@
+import 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 // import session from 'express-session';
 import { mongoStore, session } from './db/mongo.session';
-import indexRouter from './routes';
 import mongodb from './db/mongo.connect';
+import indexRouter from './routes';
 
 const app = express();
 mongodb();
-
 app.use(session({
-    secret: 'ThIsIsMy$eCrEt',
+    secret: process.env.SECRET_KEY,
     cookie: {
         maxAge: 1000 * 60
     },

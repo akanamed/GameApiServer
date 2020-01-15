@@ -4,9 +4,16 @@ import UserRepository from '../models/repository/userRepository';
 exports.createUser = (req, res, next) => {
     const user = req.body;
 
-    UserRepository.create(user)
-        .then((newUser) => {
-            res.json(newUser);
+    UserRepository.findOne(user.userid)
+        .then((searchUser) => {
+            if (searchUser === null) {
+                console.log('search user is null');
+                return UserRepository.create(user);
+            }
+            return res.redirect('/auth/login/fail');
+        })
+        .then((createUser) => {
+            res.json(createUser);
         })
         .catch((error) => {
             res.status(422).json({
@@ -21,6 +28,7 @@ exports.login = (req, res, next) => {
     UserRepository.findOne(user.userid)
         .then((searchUser) => {
             if (searchUser === null) {
+                console.log('search user is null');
                 return res.redirect('/auth/login/fail');
             }
             console.log(searchUser);

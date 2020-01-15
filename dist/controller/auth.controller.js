@@ -7,8 +7,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 exports.createUser = function (req, res, next) {
   var user = req.body;
 
-  _userRepository["default"].create(user).then(function (newUser) {
-    res.json(newUser);
+  _userRepository["default"].findOne(user.userid).then(function (searchUser) {
+    if (searchUser === null) {
+      console.log('search user is null');
+      return _userRepository["default"].create(user);
+    }
+
+    return res.redirect('/auth/login/fail');
+  }).then(function (createUser) {
+    res.json(createUser);
   })["catch"](function (error) {
     res.status(422).json({
       error: error
@@ -22,11 +29,12 @@ exports.login = function (req, res, next) {
 
   _userRepository["default"].findOne(user.userid).then(function (searchUser) {
     if (searchUser === null) {
+      console.log('search user is null');
       return res.redirect('/auth/login/fail');
     }
 
     console.log(searchUser);
-    req.session.userid = user.userid;
+    req.session.user = user;
     return res.redirect('/auth/login/success');
   })["catch"](function (error) {
     console.log(error);

@@ -21,7 +21,7 @@ exports.createUser = async (req, res, next) => {
 
 exports.login = (req, res, next) => {
     const user = req.body;
-    console.log('%s, %s', user.userid, user.password);
+    console.log('%s, %s, %O, %O', user.userid, user.password, req.user, req.session.passport);
     passport.authenticate('local', { session: false }, (err, result, info) => {
         if (err) {
             return next(err);
@@ -30,7 +30,7 @@ exports.login = (req, res, next) => {
             return res.redirect('/auth/login/fail');
         }
         return req.login(result, (error) => {
-            console.log('call req.login');
+            console.log('call req.login, %O, %O', req.user, req.session.passport);
             if (error) {
                 next(error);
             }
@@ -53,6 +53,14 @@ exports.login = (req, res, next) => {
             res.redirect('/auth/login/fail');
         });
     */
+};
+
+exports.loginInfo = (req, res, next) => {
+    console.log('call loginInfo, %O, %O', req.user, req.session.passport);
+    const userInfo = req.user;
+    return res.json({
+        user: userInfo
+    });
 };
 
 exports.success = (req, res, next) => res.json({

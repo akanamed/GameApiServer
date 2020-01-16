@@ -4,12 +4,12 @@ import UserRepository from '../models/repository/userRepository';
 
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
-        console.log('serializeUser');
-        done(null, user);
+        console.log('serializeUser:%O', user);
+        done(null, user.userid);
     });
-    passport.deserializeUser((user, done) => {
-        console.log('deserializeUser');
-        done(null, user);
+    passport.deserializeUser((id, done) => {
+        console.log('deserializeUser: %O', id);
+        done(null, id);
     });
 
     passport.use(new LocalStrategy({
@@ -21,7 +21,8 @@ module.exports = (passport) => {
                 console.log('resultUser');
                 return done(null, false);
             }
-            return done(null, resultUser);
+            console.log('call localstrategy');
+            return done(null, { userid: resultUser.userid });
         })
         .catch((err) => done(err))));
 };
